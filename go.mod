@@ -1,3 +1,3 @@
-module github.com/MungaSoftwiz/learn-golang
+module github.com/bmmunga/learn-golang
 
-go 1.22.0
+go 1.22.2

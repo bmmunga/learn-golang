@@ -4,4 +4,4 @@ version = 1
 name = "go"
 
   [analyzers.meta]
-  import_root = "github.com/MungaSoftwiz/learn-golang"
+  import_root = "github.com/bmmunga/learn-golang"
