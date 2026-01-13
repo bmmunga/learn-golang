@@ -13,6 +13,8 @@ func CheckWebsites(wc WebsiteChecker, urls []string) map[string]bool {
 
 	// help control the communication between different processes, allowing us to avoid a race condition bug
 	// Channels are concurrent & allow for parallel execution of multiple goroutines
+	// This creates an unbuffered channel of result structs
+	// Sends & receives on this channel will block until the other side is ready
 	resultChannel := make(chan result)
 
 
@@ -36,9 +38,9 @@ func CheckWebsites(wc WebsiteChecker, urls []string) map[string]bool {
 	// We use a receive expression (<-) which we assign a value received from the channel to a var
 	// Receiving op blocks until a value is available on the channel
 		r := <-resultChannel
+		// Map happen in a single receive loop, avoiding concurrent map writes and therefore, race conditions
 		results[r.string] = r.bool
 	}
-
 	return results
 }
 
